@@ -20,7 +20,9 @@
     //         Nickname = nickname;
     //     }
     // }
-    //На будущее если архитектура будет требовать, а пока использую record
+    //На будущее если архитектура будет требовать, надо отредачить ибо наколеньках написал, а пока использую record
     
-    public record User(int Id, string Nickname) : IDatabase;
+    public record User(int Id, string Nickname, string Password) : IDatabase;
+    //records являются неизменяемыми
+    //Так сказать поиграем в игру: нет права на ошибку
 }
