@@ -8,6 +8,7 @@
     <Folder Include="wwwroot\customRes" />
     <Folder Include="wwwroot\customRes\img\brand" />
     <Folder Include="wwwroot\customRes\img\New folder" />
+    <Folder Include="wwwroot\img" />
   </ItemGroup>
 
 </Project>
