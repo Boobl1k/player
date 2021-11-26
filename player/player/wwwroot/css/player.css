@@ -21,9 +21,6 @@
     outline: none;
     min-height: 3.75em;
 }
-li {
-    text-align: -webkit-match-parent;
-}
 
 .jHiqyn:before {
     position: absolute;
@@ -78,42 +75,7 @@ li {
     top: 50%;
     left: 50%;
 }
-button, select {
-    text-transform: none;
-}
 
-button, input, optgroup, select, textarea {
-    font-family: inherit;
-    font-size: 100%;
-    line-height: 1.15;
-    margin: 0;
-}
-button {
-    -webkit-writing-mode: horizontal-tb !important;
-    font-style: ;
-    font-variant-ligatures: ;
-    font-variant-caps: ;
-    font-variant-numeric: ;
-    font-variant-east-asian: ;
-    font-weight: ;
-    font-stretch: ;
-    font-size: ;
-    font-family: ;
-    text-rendering: auto;
-    color: -internal-light-dark(black, white);
-    letter-spacing: normal;
-    word-spacing: normal;
-    line-height: normal;
-    text-transform: none;
-    text-indent: 0px;
-    text-shadow: none;
-    text-align: center;
-    cursor: default;
-}
-
-*, *::before, *::after {
-    box-sizing: border-box;
-}
 svg:not(:root) {
     overflow: hidden;
 }
@@ -127,12 +89,6 @@ svg:not(:root) {
     transition: fill 0.2s ease-in-out,color 0.2s ease-in-out;
 }
 
-button, input, optgroup, select, textarea {
-    font-family: inherit;
-    font-size: 100%;
-    line-height: 1.15;
-    margin: 0;
-}
 .MYoDL {
     max-width: 100%;
 }
@@ -142,27 +98,6 @@ button, input, optgroup, select, textarea {
     list-style-type: none;
     width: 100%;
     margin-top: 0.688rem;
-}
-
-ul {
-    list-style-type: disc;
-}
-
-body {
-    margin: 0;
-    font-family: Roboto,Arial,sans-serif;
-    font-style: normal;
-}
-
-html {
-    line-height: 1.15;
-    -webkit-text-size-adjust: 100%;
-    overflow-x: hidden;
-    max-width: 100%;
-    min-width: 320px;
-}
-*, *::before, *::after {
-    box-sizing: border-box;
 }
 
 .MYoDL.MYoDL > a {
