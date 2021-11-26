@@ -26,7 +26,9 @@
             <div class="col-lg-7">
                 <div class="card mb-4">
                     <div class="card-body text-center">
-                        <div class="card sm" style="padding-left: 10px">
+                        @for (int i = 0; i < 20; i++)
+                        {
+                            <div class="card sm" style="padding-left: 10px">
                             <div data-qa="track" title="Послушать Tanir &amp; Tyomcha – Потеряли пацана" tabindex="0" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording" class="fa9swr-4 jHiqyn">
                                 <div class="fa9swr-6 eOPoOa">
                                     <button type="button" data-qa="track-play" aria-label="Начать проигрывание трека" class="sc-1d8s5hw-2 fCjwbf">
@@ -35,11 +37,11 @@
                                         </svg>
                                     </button>
                                     <div class="sc-1cisiq-8 MYoDL">
-                                        <a href="/pages/247710/24771057.shtml" title="Tanir &amp; Tyomcha - Потеряли пацана" class="sc-1vuj2t8-0 pbfhi" data-qa="track-link" itemprop="url">
-                                            <div data-qa="track-name" itemprop="name" class="sc-1cisiq-5 fTOMam">Потеряли пацана</div>
+                                        <a href="/pages/247710/24771057.shtml" title="Music" class="sc-1vuj2t8-0 pbfhi" data-qa="track-link" itemprop="url">
+                                            <div data-qa="track-name" itemprop="name" class="sc-1cisiq-5 fTOMam">Music</div>
                                         </a>
-                                        <a href="/artist/1170949" title="Tanir &amp; Tyomcha - Потеряли пацана" class="sc-1vuj2t8-0 pbfhi" data-qa="artist-link" itemprop="url">
-                                            <div itemprop="byArtist" class="sc-1cisiq-6 iHGhbl">Tanir &amp; Tyomcha</div>
+                                        <a href="/artist/1170949" title="Author" class="sc-1vuj2t8-0 pbfhi" data-qa="artist-link" itemprop="url">
+                                            <div itemprop="byArtist" class="sc-1cisiq-6 iHGhbl">Author</div>
                                         </a>
                                     </div>
                                 </div>
@@ -55,6 +57,7 @@
                                 </div>
                             </div>
                         </div>
+                        }
                     </div>
                 </div>
             </div>
