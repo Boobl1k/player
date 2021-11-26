@@ -2,7 +2,71 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<link rel="stylesheet" href="css/player.css">
+
+@* <div class="text-center"> *@
+@*     <h1 class="display-4">Welcome</h1> *@
+@*     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
+@* </div> *@
+<section>
+    <div class="container py-5">
+        @* <div class="row"> *@
+        @*   <div class="col"> *@
+        @*     <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4"> *@
+        @*       <ol class="breadcrumb mb-0"> *@
+        @*         <li class="breadcrumb-item"><a href="#">Home</a></li> *@
+        @*         <li class="breadcrumb-item"><a href="#">User</a></li> *@
+        @*         <li class="breadcrumb-item active" aria-current="page">User Profile</li> *@
+        @*       </ol> *@
+        @*     </nav> *@
+        @*   </div> *@
+        @* </div> *@
+
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <div class="card sm" style="padding-left: 10px">
+                            <div data-qa="track" title="Послушать Tanir &amp; Tyomcha – Потеряли пацана" tabindex="0" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording" class="fa9swr-4 jHiqyn">
+                                <div class="fa9swr-6 eOPoOa">
+                                    <button type="button" data-qa="track-play" aria-label="Начать проигрывание трека" class="sc-1d8s5hw-2 fCjwbf">
+                                        <svg viewBox="0 0 11 13" style="margin-left: 0.1em;">
+                                            <use xlink:href="#play"></use>
+                                        </svg>
+                                    </button>
+                                    <div class="sc-1cisiq-8 MYoDL">
+                                        <a href="/pages/247710/24771057.shtml" title="Tanir &amp; Tyomcha - Потеряли пацана" class="sc-1vuj2t8-0 pbfhi" data-qa="track-link" itemprop="url">
+                                            <div data-qa="track-name" itemprop="name" class="sc-1cisiq-5 fTOMam">Потеряли пацана</div>
+                                        </a>
+                                        <a href="/artist/1170949" title="Tanir &amp; Tyomcha - Потеряли пацана" class="sc-1vuj2t8-0 pbfhi" data-qa="artist-link" itemprop="url">
+                                            <div itemprop="byArtist" class="sc-1cisiq-6 iHGhbl">Tanir &amp; Tyomcha</div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="fa9swr-2 fa9swr-5 bBAGbq">
+                                    <time class="sc-1iop5xg-1 hCvkRx track-duration" data-qa="track-duration" itemprop="duration">02:30</time>
+                                    <div class="yx7nr0-2 hWbGYU">
+                                        <button title="Скачать трек" data-qa="track-download" class="yx7nr0-1 NmGrD">
+                                            <svg viewBox="0 0 20 20">
+                                                <use xlink:href="#download"></use>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div>
+                            <img src="assets/img/player.bmp" style="height: 60%; width: 60%" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
