@@ -1,6 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "player", "player\player.csproj", "{0D16AA9B-3E9E-4B8B-84A6-2428E661DF7C}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "player", "player\player.csproj", "{0D16AA9B-3E9E-4B8B-84A6-2428E661DF7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "player.Backend", "player.Backend\player.Backend.csproj", "{5ECD7087-C761-4006-8BCF-EFAC0CEA3E41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +17,15 @@ Global
 		{0D16AA9B-3E9E-4B8B-84A6-2428E661DF7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D16AA9B-3E9E-4B8B-84A6-2428E661DF7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D16AA9B-3E9E-4B8B-84A6-2428E661DF7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ECD7087-C761-4006-8BCF-EFAC0CEA3E41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ECD7087-C761-4006-8BCF-EFAC0CEA3E41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ECD7087-C761-4006-8BCF-EFAC0CEA3E41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ECD7087-C761-4006-8BCF-EFAC0CEA3E41}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {78C5DD8D-A107-4CFF-95A4-BD871B193200}
 	EndGlobalSection
 EndGlobal
