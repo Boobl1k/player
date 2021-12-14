@@ -1,18 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace player.Controllers
+namespace player.Controllers;
+
+public class ErrorController : Controller
 {
-    public class ErrorController : Controller
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-        
-        [Route("404")]
-        public IActionResult PageNotFound()
-        {
-            return View();
-        }
+        return View();
+    }
+
+    [Route("404")]
+    public IActionResult PageNotFound()
+    {
+        return View();
     }
 }

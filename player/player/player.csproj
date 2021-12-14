@@ -2,10 +2,10 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <LangVersion>10</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Pages" />
       <Folder Include="wwwroot\assets\img" />
     </ItemGroup>
 

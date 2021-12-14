@@ -1,18 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace player.Controllers
+namespace player.Controllers;
+
+public class AuthController : Controller
 {
-    public class AuthController : Controller
-    {
-        // GET
-        public IActionResult Login()
-        {
-            return View();
-        }
-        
-        public IActionResult Register()
-        {
-            return View();
-        }
-    }
+    // GET
+    public IActionResult Login() => 
+        View();
+
+    public IActionResult Register() => 
+        View();
 }
