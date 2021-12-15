@@ -10,7 +10,7 @@ using player.DB;
 
 namespace player.Migrations
 {
-    [DbContext(typeof(UserContext))]
+    [DbContext(typeof(PlayerContext))]
     [Migration("20211214213053_InitialCreate")]
     partial class InitialCreate
     {

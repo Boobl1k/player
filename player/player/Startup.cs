@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using player.DB;
+using player.Services;
 
 namespace player;
 
@@ -15,6 +17,10 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
+        services.AddSingleton<JwtMiddleware>();
+        services.AddSingleton<PlayerContext>();
+
+        services.AddControllers();
         services.AddControllersWithViews();
     }
 
@@ -27,6 +33,7 @@ public class Startup
         .UseStaticFiles()
         .UseRouting()
         .UseAuthorization()
+        .UseMiddleware<JwtMiddleware>()
         .UseEndpoints(endpoints =>
         {
             endpoints.MapControllerRoute(

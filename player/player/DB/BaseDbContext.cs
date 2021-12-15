@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace player.DB;
 
-public abstract class BaseDbContext<T> : DbContext, IDbContext<T> where T : class
+public abstract class BaseDbContext : Microsoft.EntityFrameworkCore.DbContext
 {
     protected abstract string Catalog { get; }
     private string ConnectionString => $"Data Source=localhost;Initial Catalog={Catalog};Integrated Security=True";
@@ -14,8 +14,4 @@ public abstract class BaseDbContext<T> : DbContext, IDbContext<T> where T : clas
         optionsBuilder.UseSqlServer(ConnectionString);
         base.OnConfiguring(optionsBuilder);
     }
-
-    public DbSet<T> Items { get; set; }
-
-    public new void SaveChanges() => base.SaveChanges();
 }

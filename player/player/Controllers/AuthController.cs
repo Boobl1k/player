@@ -1,13 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using player.Attributes;
+using player.DB;
+using player.Services;
 
 namespace player.Controllers;
 
 public class AuthController : Controller
 {
-    // GET
-    public IActionResult Login() => 
+
+
+    [HttpGet]
+    public IActionResult LoginPage() =>
         View();
 
-    public IActionResult Register() => 
+    [HttpGet]
+    public IActionResult RegisterPage() =>
         View();
+
+    public class UserLoginPassword
+    {
+        public string Login { get; set; }
+        public string Password { get; set; }
+    }
+    
+    
 }

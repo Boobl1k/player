@@ -9,7 +9,7 @@ using player.DB;
 
 namespace player.Migrations
 {
-    [DbContext(typeof(UserContext))]
+    [DbContext(typeof(PlayerContext))]
     partial class UserContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
