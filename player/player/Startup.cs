@@ -17,8 +17,7 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddSingleton<JwtMiddleware>();
-        services.AddSingleton<PlayerContext>();
+        services.AddDbContext<PlayerContext>();
 
         services.AddControllers();
         services.AddControllersWithViews();

@@ -1,7 +1,6 @@
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
@@ -12,9 +11,6 @@ namespace player.Services;
 public class JwtMiddleware
 {
     private readonly RequestDelegate _next;
-
-    private const string Secret = "123123123123123123123123123123";
-    private static readonly byte[] key = Encoding.ASCII.GetBytes(Secret);
 
     public JwtMiddleware(RequestDelegate next) =>
         _next = next;
@@ -33,7 +29,7 @@ public class JwtMiddleware
         tokenHandler.ValidateToken(token, new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(key),
+            IssuerSigningKey = new SymmetricSecurityKey(Config.JwtKey),
             ValidateIssuer = false,
             ValidateAudience = false,
             ClockSkew = TimeSpan.Zero
