@@ -30,14 +30,11 @@ public class HomeController : Controller
     public IActionResult Privacy() =>
         View();
 
-    [Authorize]
-    [HttpGet]
-    public IActionResult Profile()
-    {
-        return View(HttpContext.Items["User"]);
-    }
+    [Authorize, HttpGet]
+    public IActionResult Profile() =>
+        View(HttpContext.Items["User"]);
 
-    [HttpGet]
+    [Authorize, HttpGet]
     public IActionResult EditProfile() =>
         View();
 
