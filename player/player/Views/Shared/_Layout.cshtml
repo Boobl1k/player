@@ -24,9 +24,12 @@
                     @* <li class="nav-item"> *@
                     @*   <a class="nav-link" href="#">Link</a> *@
                     @* </li> *@
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Profile">Profile</a>
-                    </li>
+                    @if (Context.Items["User"] is not null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Profile">Profile</a>
+                        </li>
+                    }
                     @* <li class="nav-item"> *@
                     @*   <a class="nav-link disabled" href="#">Disabled</a> *@
                     @* </li> *@
@@ -51,7 +54,7 @@
                             <a class="nav-link" asp-controller="Auth" asp-action="RegisterPage">Sign Up</a>
                         </li>
                     </ul>
-                } 
+                }
                 else
                 {
                     <ul class="nav navbar-nav navbar-right">

@@ -1,7 +1,7 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using player.Attributes;
 using player.DB;
 using player.Models;
 
@@ -21,7 +21,6 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult Index(int page)
     {
-        Console.WriteLine((HttpContext.Items["User"] as User)?.Login);
         ViewBag.Page = page;
         ViewBag.Tracks = _dataContext.Tracks;
         return View();
@@ -31,9 +30,12 @@ public class HomeController : Controller
     public IActionResult Privacy() =>
         View();
 
+    [Authorize]
     [HttpGet]
-    public IActionResult Profile() =>
-        View();
+    public IActionResult Profile()
+    {
+        return View(HttpContext.Items["User"]);
+    }
 
     [HttpGet]
     public IActionResult EditProfile() =>

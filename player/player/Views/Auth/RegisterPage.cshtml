@@ -25,6 +25,21 @@
                         <label class="form-label" for="form1Example23">Password</label>
                     </div>
 
+                    <div class="form-outline mb-4">
+                        <input type="text" name="Name" id="form1Example23" class="form-control form-control-lg"/>
+                        <label class="form-label" for="form1Example23">Name</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input type="text" name="Surname" id="form1Example23" class="form-control form-control-lg"/>
+                        <label class="form-label" for="form1Example23">Surname</label>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <input type="text" name="PhoneNumber" id="form1Example23" class="form-control form-control-lg"/>
+                        <label class="form-label" for="form1Example23">Phone number</label>
+                    </div>
+
                     <!--<div class="form-outline mb-4">
                         <input type="password" id="form1Example23" class="form-control form-control-lg" />
                         <label class="form-label" for="form1Example23">Password Again</label>
@@ -49,13 +64,10 @@
                 <script>
                     registerForm.onsubmit = async (e) => {
                         e.preventDefault();
-                        let result = await fetch('https://localhost:5001/Entering/Register', {
+                        await fetch('https://localhost:5001/Entering/Register', {
                             method: 'POST',
                             body: new FormData(registerForm)
                         });
-                        let jwt = await result.json();
-                        alert(jwt);
-                        localStorage.setItem('jwt', jwt);
                     };
                 </script>
             </div>

@@ -24,13 +24,11 @@ public class EnteringController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Register([FromForm] UserLoginPassword logPass)
+    public IActionResult Register([FromForm] User user)
     {
-        var user = new User
-        {
-            Login = logPass.Login,
-            Password = logPass.Password
-        };
+        Console.WriteLine($"new user: {user}");
+        if (user.PhoneNumber is < 70000000000 or > 90000000000)
+            throw new Exception("bad phone number");
         Expression<Func<User, bool>> searchingExpression = u => u.Login == user.Login;
         if (_dataContext.Users.Any(searchingExpression))
             throw new Exception("already registered");
