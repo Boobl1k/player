@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using player.Attributes;
+using player.DB;
 using player.Models;
 
 namespace player.Controllers;
@@ -9,42 +9,41 @@ namespace player.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly PlayerContext _dataContext;
 
-    public HomeController(ILogger<HomeController> logger) =>
-        _logger = logger;
-
-
-    [HttpGet]
-    public IActionResult Index() =>
-        View();
-
-    [HttpGet]
-    [Authorize]
-    public IActionResult Privacy()
+    public HomeController(ILogger<HomeController> logger, PlayerContext dataContext)
     {
+        _logger = logger;
+        _dataContext = dataContext;
+    }
+
+    [HttpGet]
+    public IActionResult Index(int page)
+    {
+        ViewBag.Page = page;
+        ViewBag.Tracks = _dataContext.Tracks;
         return View();
     }
 
+    [HttpGet]
+    public IActionResult Privacy() =>
+        View();
 
     [HttpGet]
     public IActionResult Profile() =>
         View();
 
-
     [HttpGet]
     public IActionResult EditProfile() =>
         View();
-
 
     [HttpGet]
     public IActionResult Search() =>
         View();
 
-
     [HttpGet]
     public IActionResult Contact() =>
         View();
-
 
     [HttpGet]
     public IActionResult About() =>

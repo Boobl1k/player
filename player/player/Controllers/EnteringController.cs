@@ -1,13 +1,12 @@
 using System;
 using System.Linq;
+using System.Linq.Expressions;
 using Microsoft.AspNetCore.Mvc;
 using player.DB;
 using player.Services;
 
 namespace player.Controllers;
 
-[ApiController]
-[Route("[controller]")]
 public class EnteringController : ControllerBase
 {
     private readonly PlayerContext _dataContext;
@@ -15,7 +14,7 @@ public class EnteringController : ControllerBase
     public EnteringController(PlayerContext dataContext) =>
         _dataContext = dataContext;
 
-    [HttpPost("Login")]
+    [HttpPost]
     public string Login([FromForm] UserLoginPassword logPass)
     {
         var user = DbHelper.GetUserWithId(logPass.Login, logPass.Password, _dataContext);
@@ -24,7 +23,7 @@ public class EnteringController : ControllerBase
             : JwtGenerator.GenerateJwtToken(user.Id);
     }
 
-    [HttpPost("Register")]
+    [HttpPost]
     public IActionResult Register([FromForm] UserLoginPassword logPass)
     {
         var user = new User
@@ -32,10 +31,12 @@ public class EnteringController : ControllerBase
             Login = logPass.Login,
             Password = logPass.Password
         };
-        //if(_dataContext.Users.Any())
+        Expression<Func<User, bool>> searchingExpression = u => u.Login == user.Login;
+        if (_dataContext.Users.Any(searchingExpression))
+            throw new Exception("already registered");
         _dataContext.Users.Add(user);
         _dataContext.SaveChanges();
-        user = _dataContext.Users.FirstOrDefault(u => u.Login == user.Login && u.Password == user.Password);
+        user = _dataContext.Users.FirstOrDefault(searchingExpression);
         var token = JwtGenerator.GenerateJwtToken(user!.Id);
         Console.WriteLine(token);
         return new JsonResult(token);
