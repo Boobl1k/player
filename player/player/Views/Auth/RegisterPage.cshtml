@@ -49,12 +49,13 @@
                 <script>
                     registerForm.onsubmit = async (e) => {
                         e.preventDefault();
-                        let response = await fetch('https://localhost:5001/Entering/Register', {
+                        let result = await fetch('https://localhost:5001/Entering/Register', {
                             method: 'POST',
                             body: new FormData(registerForm)
                         });
-                        let result = await response.json();
-                        alert(result.message);
+                        let jwt = await result.json();
+                        alert(jwt);
+                        localStorage.setItem('jwt', jwt);
                     };
                 </script>
             </div>

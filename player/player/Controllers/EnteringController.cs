@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using player.DB;
@@ -24,17 +25,20 @@ public class EnteringController : ControllerBase
     }
 
     [HttpPost("Register")]
-    public string Register([FromForm] UserLoginPassword logPass)
+    public IActionResult Register([FromForm] UserLoginPassword logPass)
     {
         var user = new User
         {
             Login = logPass.Login,
             Password = logPass.Password
         };
+        //if(_dataContext.Users.Any())
         _dataContext.Users.Add(user);
         _dataContext.SaveChanges();
         user = _dataContext.Users.FirstOrDefault(u => u.Login == user.Login && u.Password == user.Password);
-        return JwtGenerator.GenerateJwtToken(user!.Id);
+        var token = JwtGenerator.GenerateJwtToken(user!.Id);
+        Console.WriteLine(token);
+        return new JsonResult(token);
     }
 
     public class UserLoginPassword
