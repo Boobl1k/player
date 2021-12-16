@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.AspNetCore.Mvc;
@@ -19,14 +18,9 @@ public class EnteringController : ControllerBase
     public IActionResult Login([FromForm] UserLoginPassword logPass)
     {
         var user = DbHelper.GetUserWithId(logPass.Login, logPass.Password, _dataContext);
-        if (user is not null)
-        {
-            Console.WriteLine("writing cookies");
-            HttpContext.Response.Cookies.Append("Authorization", JwtGenerator.GenerateJwtToken(user.Id));
-        }
-        return user is null
-            ? new JsonResult(string.Empty)
-            : new JsonResult(JwtGenerator.GenerateJwtToken(user.Id));
+        if (user is null) return BadRequest();
+        HttpContext.Response.Cookies.Append("Authorization", JwtGenerator.GenerateJwtToken(user.Id));
+        return Ok();
     }
 
     [HttpPost]
@@ -42,10 +36,9 @@ public class EnteringController : ControllerBase
             throw new Exception("already registered");
         _dataContext.Users.Add(user);
         _dataContext.SaveChanges();
-        user = _dataContext.Users.FirstOrDefault(searchingExpression);
-        var token = JwtGenerator.GenerateJwtToken(user!.Id);
-        Console.WriteLine(token);
-        return new JsonResult(token);
+        user = _dataContext.Users.First(searchingExpression);
+        HttpContext.Response.Cookies.Append("Authorization", JwtGenerator.GenerateJwtToken(user.Id));
+        return Ok();
     }
 
     public class UserLoginPassword
