@@ -75,8 +75,17 @@
             @* </div> *@
         </div>
         <div>
-            <button class="btn btn-primary" type="submit">Назад</button>
-            <button class="btn btn-primary" type="submit">Вперед</button>
+            <script >
+                function NextPage() {
+                    document.location.href = "https://localhost:5001/?page=@(ViewBag.Page + 1)";
+                }
+                function PrevPage() {
+                    document.location.href = "https://localhost:5001/?page=@(ViewBag.Page > 0 ? ViewBag.Page - 1 : 0)";
+                }
+                
+            </script>
+            <button class="btn btn-primary" type="submit" onclick="PrevPage()">Назад</button>
+            <button class="btn btn-primary" type="submit" onclick="NextPage()">Вперед</button>
         </div>
     </div>
 </section>
