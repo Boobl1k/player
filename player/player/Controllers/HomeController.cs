@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using player.DB;
@@ -20,6 +21,9 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult Index(int page)
     {
+        //HttpContext.Request.Cookies.
+        Console.WriteLine($"User: {HttpContext.Items["User"]}");
+        ViewBag.User = HttpContext.Items["User"]!;
         ViewBag.Page = page;
         ViewBag.Tracks = _dataContext.Tracks;
         return View();

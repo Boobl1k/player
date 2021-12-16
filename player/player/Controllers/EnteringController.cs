@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.AspNetCore.Mvc;
@@ -15,12 +16,17 @@ public class EnteringController : ControllerBase
         _dataContext = dataContext;
 
     [HttpPost]
-    public string Login([FromForm] UserLoginPassword logPass)
+    public IActionResult Login([FromForm] UserLoginPassword logPass)
     {
         var user = DbHelper.GetUserWithId(logPass.Login, logPass.Password, _dataContext);
+        if (user is not null)
+        {
+            Console.WriteLine("writing cookies");
+            HttpContext.Response.Cookies.Append("Authorization", JwtGenerator.GenerateJwtToken(user.Id));
+        }
         return user is null
-            ? string.Empty
-            : JwtGenerator.GenerateJwtToken(user.Id);
+            ? new JsonResult(string.Empty)
+            : new JsonResult(JwtGenerator.GenerateJwtToken(user.Id));
     }
 
     [HttpPost]

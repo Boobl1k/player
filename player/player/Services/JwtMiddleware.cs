@@ -17,7 +17,7 @@ public class JwtMiddleware
 
     public async Task Invoke(HttpContext context, PlayerContext dataContext)
     {
-        var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+        var token = context.Request.Cookies["Authorization"];
         if (token is not null)
             await AttachAccountToContext(context, dataContext, token);
         await _next(context);
