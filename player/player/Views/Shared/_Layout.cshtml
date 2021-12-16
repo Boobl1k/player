@@ -55,10 +55,15 @@
                 else
                 {
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item">
+                        <li class="nav-item" onclick="logout()">
                             <a class="nav-link" asp-controller="Auth" asp-action="LoginPage">Sign Out</a>
                         </li>
                     </ul>
+                    <script>
+                        function logout(){
+                            document.cookie = 'Authorization' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT';
+                        }
+                    </script>
                 }
             </div>
         </div>

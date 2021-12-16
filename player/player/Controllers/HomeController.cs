@@ -21,6 +21,7 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult Index(int page)
     {
+        Console.WriteLine((HttpContext.Items["User"] as User)?.Login);
         ViewBag.Page = page;
         ViewBag.Tracks = _dataContext.Tracks;
         return View();

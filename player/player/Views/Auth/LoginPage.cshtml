@@ -58,13 +58,11 @@
                 <script>
                     loginForm.onsubmit = async (e) => {
                         e.preventDefault();
-                        alert('qwe');
                         let result = await fetch('https://localhost:5001/Entering/Login', {
                             method: 'POST',
                             body: new FormData(loginForm)
                         });
                         let jwt = await result.json();
-                        alert(jwt);
                         localStorage.setItem('jwt', jwt);
                     };
                 </script>
