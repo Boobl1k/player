@@ -41,7 +41,7 @@
                 </ul>
                 <button type="button" class="btn btn-light" onclick="location.href='@Url.Action("Search", "Home")'">Search</button>
 
-                @if (ViewBag.User is null)
+                @if (Context.Items["User"] is null)
                 {
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item">
