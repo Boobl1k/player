@@ -6,7 +6,13 @@
 
 <link rel="stylesheet" href="css/player.css">
 <section>
-    <h2>title</h2>
+    <div class="input-group">
+        <form id="searchForm" action="https://localhost:5001/Tracks/Search">
+            <input type="search" class="form-control rounded" placeholder="Search" name="searchingRequest" aria-label="Search"
+                   aria-describedby="search-addon"/>
+            <button type="submit" class="btn btn-outline-primary">search</button>
+        </form>
+    </div>
     <div class="container py-5">
         <div class="row">
             <div class="col-lg-7">
