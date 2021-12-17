@@ -161,17 +161,28 @@
     <div class="container">   
     	<div class="row">
             <div class="col-sm-8">   
-                <form>
-                	<h3 class="pull-left">New Comment</h3>
-                	<button type="submit" class="btn btn-normal pull-right">Submit</button>
+                <form id="commentForm">
+                    <h3 class="pull-left">New Comment</h3>
+                    <button type="submit" class="btn btn-normal pull-right">Submit</button>
+                    <input type="hidden" name="userId" value="@(Model.User.Id)"/>
                     <fieldset>
                         <div class="row">
                             <div class="form-group col-xs-12 col-sm-9 col-lg-10">
-                                <textarea class="form-control" id="message" placeholder="Your message" required=""></textarea>
+                                <textarea name="text" class="form-control" id="message" placeholder="Your message" required=""></textarea>
                             </div>
                         </div>  	
                     </fieldset>
                 </form>
+                <script>
+                    commentForm.onsubmit = async (e) => {
+                        e.preventDefault();
+                        await fetch('https://localhost:5001/Comments/Comment', {
+                            method: 'POST',
+                            body: new FormData(commentForm)
+                        });
+                        location.reload();
+                    };
+                </script>
                 
                 <h3>@Model.Comments.Count Comments</h3>
                 @foreach (var comment in Model.Comments)
