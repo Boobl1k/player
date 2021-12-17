@@ -14,6 +14,8 @@ public class TracksController : Controller
     [HttpGet]
     public IActionResult Search(string searchingRequest, int page)
     {
+        ViewBag.SearchingRequest = searchingRequest;
+        ViewBag.Page = page;
         var tracks = _dataContext.Tracks
             .Where(t => t.Author.Contains(searchingRequest) || t.Name.Contains(searchingRequest))
             .Skip(page * 7)

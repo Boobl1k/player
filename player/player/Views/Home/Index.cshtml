@@ -1,4 +1,5 @@
-﻿@using player.DB
+﻿@model IQueryable<Track>
+@using player.DB
 @using Microsoft.EntityFrameworkCore
 @{
     ViewData["Title"] = "Home Page";
@@ -28,7 +29,7 @@
             <div class="col-lg-7">
                 <div class="card mb-4">
                     <div class="card-body text-center">
-                        @foreach(var track in ((DbSet<Track>)ViewBag.Tracks).Skip(7*(int)ViewBag.Page).Take(7))
+                        @foreach(var track in Model!)
                         {
                             <div class="card sm" style="padding-left: 10px">
                                 <div data-qa="track" tabindex="0" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording" class="fa9swr-4 jHiqyn">

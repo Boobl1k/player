@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using player.Attributes;
@@ -22,8 +23,7 @@ public class HomeController : Controller
     public IActionResult Index(int page)
     {
         ViewBag.Page = page;
-        ViewBag.Tracks = _dataContext.Tracks;
-        return View();
+        return View(_dataContext.Tracks.Skip(7 * page).Take(7));
     }
 
     [HttpGet]
