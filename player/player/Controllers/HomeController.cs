@@ -65,7 +65,7 @@ public class HomeController : Controller
 
     [Authorize, HttpGet]
     public IActionResult EditProfile() =>
-        View();
+        View(HttpContext.Items["User"]);
 
     [HttpGet]
     public IActionResult Search() =>

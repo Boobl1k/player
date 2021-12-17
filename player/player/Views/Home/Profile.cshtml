@@ -23,7 +23,7 @@
             <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-body text-center">
-                        <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-chat/ava3.png" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                        <img src="@Model.User.AvatarURL" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                         <h5 class="my-3">@($"{Model!.User.Name} {Model.User.Surname}")</h5>
                         <!--<p class="text-muted mb-1">Full Stack Developer</p>-->
                         <!--<p class="text-muted mb-4">Bay Area, San Francisco, CA</p>-->
@@ -211,7 +211,7 @@
                 {
                     <div class="media">
                         <a class="pull-left" href="https://localhost:5001/Home/Profile?userId=@comment.Writer.Id">
-                            <img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                            <img class="media-object" src="@comment.Writer.AvatarURL" alt="">
                         </a>
                         <div class="media-body">
                             <h4 class="media-heading">@comment.Writer.FullName</h4>

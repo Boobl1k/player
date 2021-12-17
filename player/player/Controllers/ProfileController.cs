@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using player.Attributes;
@@ -24,6 +25,7 @@ public class ProfileController : Controller
             currentUser.Surname = user.Surname;
         if (user.PhoneNumber != default && _dataContext.Users.All(u => u.PhoneNumber != user.PhoneNumber))
             currentUser.PhoneNumber = user.PhoneNumber;
+        if (user.AvatarURL != string.Empty && user.AvatarURL is not null) currentUser.AvatarURL = user.AvatarURL;
         _dataContext.Update(currentUser);
         _dataContext.SaveChanges();
         return Ok();

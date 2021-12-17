@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model player.DB.User
 
 @{
     ViewBag.Title = "Edit Profile";
@@ -12,7 +12,7 @@
         <!-- left column -->
         <div class="col-md-3">
             <div class="text-center">
-                <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-chat/ava3.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                <img src="@Model!.AvatarURL" class="avatar img-circle img-thumbnail" alt="avatar">
                 <h6>Upload a different photo...</h6>
 
                 <input type="file" class="form-control">
@@ -63,6 +63,12 @@
                     <label class="col-lg-3 control-label">Email:</label>
                     <div class="col-lg-8">
                         <input class="form-control" type="text" name="Login">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Avatar URL:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" type="text" name="AvatarURl">
                     </div>
                 </div>
                 @* <div class="form-group"> *@
