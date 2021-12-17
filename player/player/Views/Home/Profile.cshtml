@@ -230,10 +230,13 @@
                             <script>
                                             deleteComment@(comment.Id).onsubmit = async (e) => {
                                                 e.preventDefault();
-                                                await fetch('https://localhost:5001/Comments/Remove', {
+                                                let xmlHttp = new XMLHttpRequest();
+                                                xmlHttp.open("post", "https://localhost:5001/Comments/Remove"); 
+                                                xmlHttp.send(new FormData(deleteComment@(comment.Id)));
+                                                /*await fetch('https://localhost:5001/Comments/Remove', {
                                                     method: 'POST',
                                                     body: new FormData(deleteComment@(comment.Id))
-                                                });
+                                                });*/
                                             location.reload();
                                             };
                         </script>
