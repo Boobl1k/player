@@ -28,7 +28,7 @@
             </div>
             <h3>Personal info</h3>
 
-            <form class="form-horizontal" role="form" action="https://localhost:5001/Home/EditProfile">
+            <form class="form-horizontal" id="profileEditForm" role="form" action="https://localhost:5001/Home/EditProfile">
                 <div class="form-group">
                     <label class="col-lg-3 control-label">First name:</label>
                     <div class="col-lg-8">
@@ -84,9 +84,18 @@
                 @*   </div> *@
                 @* </div> *@
                 <div class="col-lg-8">
-                    <button type="button" class="btn btn-primary">Apply changes</button>
+                    <button type="submit" class="btn btn-primary">Apply changes</button>
                 </div>
             </form>
+            <script>
+                profileEditForm.onsubmit = async (e) => {
+                    e.preventDefault();
+                    await fetch('https://localhost:5001/Profile/Edit', {
+                        method: 'POST',
+                        body: new FormData(profileEditForm)
+                    });
+                };
+            </script>
         </div>
     </div>
 </div>

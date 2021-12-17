@@ -1,12 +1,14 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Результаты поиска";
     Layout = "_Layout";
 }
 
 <div class="input-group">
-  <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-  aria-describedby="search-addon" />
-  <button type="button" class="btn btn-outline-primary">search</button>
+    <form id="searchForm" action="https://localhost:5001/Tracks/Search">
+        <input type="search" class="form-control rounded" placeholder="Search" name="searchingRequest" aria-label="Search"
+               aria-describedby="search-addon"/>
+        <button type="submit" class="btn btn-outline-primary">search</button>
+    </form>
 </div>
