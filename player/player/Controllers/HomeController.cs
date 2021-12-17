@@ -38,6 +38,7 @@ public class HomeController : Controller
             .Where(c => c.UserId == user.Id)
             .Select(c => new BetterComment
             {
+                Id = c.Id,
                 Text = c.Text,
                 Writer = _dataContext.Users.FirstOrDefault(u => u.Id == c.WriterId)!
             }).ToList();
@@ -45,6 +46,7 @@ public class HomeController : Controller
         return View(new ProfileModel
         {
             IsCurrentUser = currentUser!.Id == user.Id,
+            CurrentUser = currentUser,
             User = user,
             Comments = comments
         });
@@ -52,6 +54,7 @@ public class HomeController : Controller
 
     public readonly struct BetterComment
     {
+        public int Id { get; init; }
         public string Text { get; init; }
         public User Writer { get; init; }
     }
@@ -59,6 +62,7 @@ public class HomeController : Controller
     public readonly struct ProfileModel
     {
         public bool IsCurrentUser { get; init; }
+        public User CurrentUser { get; init; }
         public User User { get; init; } = null!;
         public List<BetterComment> Comments { get; init; } = null!;
     }

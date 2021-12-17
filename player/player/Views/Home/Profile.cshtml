@@ -217,6 +217,27 @@
                             <h4 class="media-heading">@comment.Writer.FullName</h4>
                             <p>@comment.Text</p>
                         </div>
+
+                        @if (comment.Writer.Id == Model.CurrentUser.Id || Model.IsCurrentUser)
+                        {
+                            <form id="deleteComment@(comment.Id)">
+                                <input type="hidden" name="commentId" value="@comment.Id"/>
+                                <div>
+                                    <button type="submit" class="btn btn-light">delete</button>
+                                </div>
+                            </form>
+
+                            <script>
+                                            deleteComment@(comment.Id).onsubmit = async (e) => {
+                                                e.preventDefault();
+                                                await fetch('https://localhost:5001/Comments/Remove', {
+                                                    method: 'POST',
+                                                    body: new FormData(deleteComment@(comment.Id))
+                                                });
+                                            location.reload();
+                                            };
+                        </script>
+                        }
                     </div>
                 }
             </div>
