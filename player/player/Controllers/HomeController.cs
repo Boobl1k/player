@@ -10,14 +10,10 @@ namespace player.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
     private readonly PlayerContext _dataContext;
 
-    public HomeController(ILogger<HomeController> logger, PlayerContext dataContext)
-    {
-        _logger = logger;
+    public HomeController(ILogger<HomeController> logger, PlayerContext dataContext) =>
         _dataContext = dataContext;
-    }
 
     [HttpGet]
     public IActionResult Index(int page)
@@ -30,9 +26,13 @@ public class HomeController : Controller
     public IActionResult Privacy() =>
         View();
 
-    [Authorize, HttpGet]
-    public IActionResult Profile() =>
-        View(HttpContext.Items["User"]);
+    [HttpGet]
+    public IActionResult Profile(int userId)
+    {
+        return View(userId is default(int)
+            ? HttpContext.Items["User"]
+            : _dataContext.Users.FirstOrDefault(u => u.Id == userId));
+    }
 
     [Authorize, HttpGet]
     public IActionResult EditProfile() =>
