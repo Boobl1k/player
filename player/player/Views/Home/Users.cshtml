@@ -1,0 +1,41 @@
+@model IQueryable<player.DB.User>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/comment.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<section class="content-item" id="comments">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
+                @foreach (var user in Model!)
+                {
+                    <div class="media">
+                        <a class="pull-left" href="https://localhost:5001/Home/Profile?userId=@user.Id">
+                            <img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">@user.FullName</h4>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div>
+        <script >
+                    function NextPage() {
+                        document.location.href = "https://localhost:5001/Home/Users?page=@(ViewBag.Page + 1)";
+                    }
+                    function PrevPage() {
+                        document.location.href = "https://localhost:5001/Home/Users?page=@(ViewBag.Page > 0 ? ViewBag.Page - 1 : 0)";
+                    }
+                    
+                </script>
+        <button class="btn btn-primary" type="submit" onclick="PrevPage()">Назад</button>
+        <button class="btn btn-primary" type="submit" onclick="NextPage()">Вперед</button>
+    </div>
+</section>

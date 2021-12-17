@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using player.Attributes;
 using player.DB;
 using player.Models;
@@ -13,7 +12,7 @@ public class HomeController : Controller
 {
     private readonly PlayerContext _dataContext;
 
-    public HomeController(ILogger<HomeController> logger, PlayerContext dataContext) =>
+    public HomeController(PlayerContext dataContext) =>
         _dataContext = dataContext;
 
     [HttpGet]
@@ -83,4 +82,11 @@ public class HomeController : Controller
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error() =>
         View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+
+    [HttpGet]
+    public IActionResult Users(int page)
+    {
+        ViewBag.Page = page;
+        return View(_dataContext.Users.Skip(7 * page).Take(7));
+    }
 }
