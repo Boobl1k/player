@@ -6,13 +6,6 @@
 
 <link rel="stylesheet" href="~/css/player.css">
 <section>
-    <div class="input-group">
-        <form id="searchForm" action="https://localhost:5001/Tracks/Search">
-            <input type="search" class="form-control rounded" placeholder="Search" name="searchingRequest" aria-label="Search"
-                   aria-describedby="search-addon"/>
-            <button type="submit" class="btn btn-outline-primary">search</button>
-        </form>
-    </div>
     <div class="container py-5">
         <div class="row">
             <div class="col-lg-7">
@@ -47,12 +40,29 @@
                                             </button>
                                         </div>
                                     </div>
+                                    <div>
+                                        <button type="button" class="btn btn-light">+</button>
+                                    </div>
                                 </div>
                             </div>
                         }
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div>
+            <script>
+                function NextPage() {
+                    document.location.href = "https://localhost:5001/Tracks/Search?searchingRequest=@ViewBag.SearchingRequest&page=@(ViewBag.Page + 1)";
+                }
+                function PrevPage() {
+                    document.location.href = "https://localhost:5001/Tracks/Search?searchingRequest=@ViewBag.SearchingRequest&page=@(ViewBag.Page > 0 ? ViewBag.Page - 1 : 0)";
+                }
+                
+            </script>
+            <button class="btn btn-primary" type="submit" onclick="PrevPage()">Назад</button>
+            <button class="btn btn-primary" type="submit" onclick="NextPage()">Вперед</button>
         </div>
     </div>
 </section>
