@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace player.DB;
 
@@ -13,5 +14,7 @@ public class User
     [Required] public string Surname { get; set; }
     [Required] public long PhoneNumber { get; set; }
 
+
+    [NotMapped] public string FullName => $"{Name} {Surname}";
     public override string ToString() => $"{Login} {Password} {Name} {Surname} {PhoneNumber}";
 }

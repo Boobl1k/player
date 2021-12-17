@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -29,16 +30,35 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult Profile(int userId)
     {
-        //var comments = _dataContext.Comments.Where(c => c.UserId)
-        return View(userId is default(int)
-            ? HttpContext.Items["User"]
-            : _dataContext.Users.FirstOrDefault(u => u.Id == userId));
+        var user = userId is default(int)
+            ? HttpContext.Items["User"] as User
+            : _dataContext.Users.FirstOrDefault(u => u.Id == userId);
+        if (user is null) return BadRequest();
+        var comments = _dataContext.Comments
+            .Where(c => c.UserId == user.Id)
+            .Select(c => new BetterComment
+            {
+                Text = c.Text,
+                Writer = _dataContext.Users.FirstOrDefault(u => u.Id == c.WriterId)!
+            }).ToList();
+
+        return View(new ProfileModel
+        {
+            User = user,
+            Comments = comments
+        });
     }
-    
-    public class ProfileModel
+
+    public readonly struct BetterComment
     {
-        public User? User { get; set; }
-        public IQueryable<Comment>? Comments { get; set; }
+        public string Text { get; init; }
+        public User Writer { get; init; }
+    }
+
+    public readonly struct ProfileModel
+    {
+        public User User { get; init; } = null!;
+        public List<BetterComment> Comments { get; init; } = null!;
     }
 
     [Authorize, HttpGet]
