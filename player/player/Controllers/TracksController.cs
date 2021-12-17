@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using player.Attributes;
@@ -31,10 +30,10 @@ public class TracksController : Controller
         var userId = (HttpContext.Items["User"] as User)!.Id;
         var tracks = _dataContext.Tracks
             .Where(t =>
-            _dataContext.LikedTracks
-                .Where(lt => lt.UserId == userId)
-                .Select(lt => lt.TrackId)
-                .Contains(t.Id));
+                _dataContext.LikedTracks
+                    .Where(lt => lt.UserId == userId)
+                    .Select(lt => lt.TrackId)
+                    .Contains(t.Id));
         return View(tracks);
     }
 
@@ -47,6 +46,17 @@ public class TracksController : Controller
             UserId = userId,
             TrackId = trackId
         });
+        _dataContext.SaveChanges();
+        return Ok();
+    }
+
+    [Authorize, HttpPost]
+    public IActionResult Unlike(int trackId)
+    {
+        var userId = (HttpContext.Items["User"] as User)!.Id;
+        var liked = _dataContext.LikedTracks.FirstOrDefault(lt => lt.UserId == userId && lt.TrackId == trackId);
+        if (liked is null) return BadRequest();
+        _dataContext.LikedTracks.Remove(liked);
         _dataContext.SaveChanges();
         return Ok();
     }

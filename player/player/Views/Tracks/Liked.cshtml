@@ -43,6 +43,24 @@
                                             </button>
                                         </div>
                                     </div>
+                                    <div>
+                                        <form id="removeTrack@(track.Id)" action="https://localhost:5001/Tracks/Like">
+                                            <input type="hidden" name="trackId" value="@track.Id"/>
+                                            <div>
+                                                <button type="submit" class="btn btn-light">-</button>
+                                            </div>
+                                        </form>
+                                        <script>
+                                            removeTrack@(track.Id).onsubmit = async (e) => {
+                                                e.preventDefault();
+                                                await fetch('https://localhost:5001/Tracks/Unlike', {
+                                                    method: 'POST',
+                                                    body: new FormData(removeTrack@(track.Id))
+                                                });
+                                                location.reload();
+                                            };
+                                        </script>
+                                    </div>
                                 </div>
                             </div>
                         }
