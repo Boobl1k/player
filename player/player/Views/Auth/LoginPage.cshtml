@@ -16,13 +16,15 @@
                 <form id="loginForm" action="https://localhost:5001/">
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                        <input type="email" id="form1Example13" name="login" class="form-control form-control-lg"/>
+                        <input type="email" id="form1Example13" name="login" class="form-control form-control-lg" 
+                                pattern="[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,4}$"/>
                         <label class="form-label" for="form1Example13">Email address</label>
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-4">
-                        <input type="password" id="form1Example23" name="password" class="form-control form-control-lg"/>
+                        <input type="password" id="form1Example23" name="password" class="form-control form-control-lg"
+                               pattern="^^(?=.*?[A-Z]).{8,}"/>
                         <label class="form-label" for="form1Example23">Password</label>
                     </div>
 
