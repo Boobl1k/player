@@ -13,6 +13,14 @@ public class TracksController : Controller
     public TracksController(PlayerContext dataContext) =>
         _dataContext = dataContext;
 
+    [HttpPost]
+    public IActionResult Add(Track track)
+    {
+        _dataContext.Tracks.Add(track);
+        _dataContext.SaveChanges();
+        return Ok();
+    }
+    
     [HttpGet]
     public IActionResult Search(string searchingRequest, int page, string onlyAuthor)
     {
@@ -32,15 +40,18 @@ public class TracksController : Controller
     }
 
     [Authorize, HttpGet]
-    public IActionResult Liked()
+    public IActionResult Liked(int page)
     {
+        ViewBag.Page = page;
         var userId = (HttpContext.Items["User"] as User)!.Id;
         var tracks = _dataContext.Tracks
             .Where(t =>
                 _dataContext.LikedTracks
                     .Where(lt => lt.UserId == userId)
                     .Select(lt => lt.TrackId)
-                    .Contains(t.Id));
+                    .Contains(t.Id))
+            .Skip(7 * page)
+            .Take(7);
         return View(tracks);
     }
 

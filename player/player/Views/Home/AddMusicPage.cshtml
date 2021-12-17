@@ -5,18 +5,36 @@
     Layout = "_Layout";
 }
 
-<form>
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-        </div>
-        <div class="custom-file">
-            <input type="file" class="custom-file-input" id="inputGroupFile01"
-                   aria-describedby="inputGroupFileAddon01">
-            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+<form class="form-horizontal" id="trackAddingForm" role="form" action="https://localhost:5001/Home/EditProfile">
+    <div class="form-group">
+        <label class="col-lg-3 control-label">Author:</label>
+        <div class="col-lg-8">
+            <input class="form-control" type="text" name="Author">
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="form-group">
+        <label class="col-lg-3 control-label">Name:</label>
+        <div class="col-lg-8">
+            <input class="form-control" type="text" name="Name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-3 control-label">Time in seconds:</label>
+        <div class="col-lg-8">
+            <input class="form-control" type="text" name="TimeInSeconds">
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <button type="submit" class="btn btn-primary">add</button>
+    </div>
 </form>
-
-    
+<script>
+trackAddingForm.onsubmit = async (e) => {
+                    e.preventDefault();
+                    await fetch('https://localhost:5001/Tracks/Add', {
+                        method: 'POST',
+                        body: new FormData(trackAddingForm)
+                    });
+                    location.reload();
+                };
+</script>
