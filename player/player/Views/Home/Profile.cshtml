@@ -156,6 +156,10 @@
 
 <link rel="stylesheet" href="~/css/comment.css">
 
+
+
+
+
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <section class="content-item" id="comments">
     <div class="container">   
@@ -167,9 +171,26 @@
                     <input type="hidden" name="userId" value="@(Model.User.Id)"/>
                     <fieldset>
                         <div class="row">
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                            <script>
+                                                                    $(document).ready(function() {
+                                                                    var text_max = 99;
+                                                                    $('#textarea_feedback').html(text_max + ' characters remaining');
+                                                                    
+                                                                    $('#message').keyup(function() {
+                                                                        var text_length = $('#message').val().length;
+                                                                        var text_remaining = text_max - text_length;
+                                                                    
+                                                                        $('#textarea_feedback').html(text_remaining + ' characters remaining');
+                                                                    });
+                                                                    
+                                                                    });
+                            </script>
                             <div class="form-group col-xs-12 col-sm-9 col-lg-10">
-                                <textarea name="text" class="form-control" id="message" placeholder="Your message" required=""></textarea>
+                                <textarea name="text" class="form-control" id="message" placeholder="Your message" required="" maxlength="99"></textarea>
                             </div>
+                            <div id="textarea_feedback"></div>
+                            
                         </div>  	
                     </fieldset>
                 </form>
@@ -183,6 +204,8 @@
                         location.reload();
                     };
                 </script>
+                
+                
                 
                 <h3>@Model.Comments.Count Comments</h3>
                 @foreach (var comment in Model.Comments)
