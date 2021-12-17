@@ -29,7 +29,7 @@
             <div class="col-lg-7">
                 <div class="card mb-4">
                     <div class="card-body text-center">
-                        @foreach(var track in Model!)
+                        @foreach (var track in Model!)
                         {
                             <div class="card sm" style="padding-left: 10px">
                                 <div data-qa="track" tabindex="0" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording" class="fa9swr-4 jHiqyn">
@@ -59,7 +59,21 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <button type="button" class="btn btn-light">+</button>
+                                        <form id="addTrack@(track.Id)" action="https://localhost:5001/Tracks/Like">
+                                            <input type="hidden" name="trackId" value="@track.Id"/>
+                                            <div>
+                                                <button type="submit" class="btn btn-light">+</button>
+                                            </div>
+                                        </form>
+                                        <script>
+                                            addTrack@(track.Id).onsubmit = async (e) => {
+                                                e.preventDefault();
+                                                await fetch('https://localhost:5001/Tracks/Like', {
+                                                    method: 'POST',
+                                                    body: new FormData(addTrack@(track.Id))
+                                                });
+                                            };
+                                        </script>
                                     </div>
                                 </div>
                             </div>

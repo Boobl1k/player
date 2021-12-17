@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using player.Attributes;
@@ -35,5 +36,18 @@ public class TracksController : Controller
                 .Select(lt => lt.TrackId)
                 .Contains(t.Id));
         return View(tracks);
+    }
+
+    [Authorize, HttpPost]
+    public IActionResult Like(int trackId)
+    {
+        var userId = (HttpContext.Items["User"] as User)!.Id;
+        _dataContext.LikedTracks.Add(new LikedTrack
+        {
+            UserId = userId,
+            TrackId = trackId
+        });
+        _dataContext.SaveChanges();
+        return Ok();
     }
 }

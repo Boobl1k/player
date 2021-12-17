@@ -14,7 +14,7 @@
             <div class="col-lg-7">
                 <div class="card mb-4">
                     <div class="card-body text-center">
-                        @foreach(var track in Model!)
+                        @foreach (var track in Model!)
                         {
                             <div class="card sm" style="padding-left: 10px">
                                 <div data-qa="track" tabindex="0" itemprop="track" itemscope="" itemtype="http://schema.org/MusicRecording" class="fa9swr-4 jHiqyn">
@@ -36,15 +36,12 @@
                                     <div class="fa9swr-2 fa9swr-5 bBAGbq">
                                         <time class="sc-1iop5xg-1 hCvkRx track-duration" data-qa="track-duration" itemprop="duration">@track.TimeInSeconds</time>
                                         <div class="yx7nr0-2 hWbGYU">
-                                            <button title="Скачать трек" data-qa="track-download" class="yx7nr0-1 NmGrD">
+                                            <button type="submit" title="Скачать трек" data-qa="track-download" class="yx7nr0-1 NmGrD">
                                                 <svg viewBox="0 0 20 20">
                                                     <use xlink:href="#download"></use>
                                                 </svg>
                                             </button>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="btn btn-light">+</button>
                                     </div>
                                 </div>
                             </div>
