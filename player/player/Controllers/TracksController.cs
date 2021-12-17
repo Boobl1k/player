@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using player.Attributes;
@@ -13,14 +14,20 @@ public class TracksController : Controller
         _dataContext = dataContext;
 
     [HttpGet]
-    public IActionResult Search(string searchingRequest, int page)
+    public IActionResult Search(string searchingRequest, int page, string onlyAuthor)
     {
+        Console.WriteLine(onlyAuthor);
         ViewBag.SearchingRequest = searchingRequest;
         ViewBag.Page = page;
-        var tracks = _dataContext.Tracks
-            .Where(t => t.Author.Contains(searchingRequest) || t.Name.Contains(searchingRequest))
-            .Skip(page * 7)
-            .Take(7);
+        var tracks = onlyAuthor == "on"
+            ? _dataContext.Tracks
+                .Where(t => t.Author.Contains(searchingRequest))
+                .Skip(page * 7)
+                .Take(7)
+            : _dataContext.Tracks
+                .Where(t => t.Author.Contains(searchingRequest) || t.Name.Contains(searchingRequest))
+                .Skip(page * 7)
+                .Take(7);
         return View(tracks);
     }
 
