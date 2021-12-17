@@ -30,7 +30,10 @@
                         <div class="d-flex justify-content-center mb-2">
                             <button type="button" class="btn btn-primary">Follow</button>
                             <button type="button" class="btn btn-outline-primary ms-1">Message</button>
-                            <button type="button" class="btn btn-outline-primary ms-1" onclick="location.href='@Url.Action("EditProfile", "Home")'">Edit profile</button>
+                            @if (Model.IsCurrentUser)
+                            {
+                                <button type="button" class="btn btn-outline-primary ms-1" onclick="location.href='@Url.Action("EditProfile", "Home")'">Edit profile</button>
+                            }
                         </div>
                     </div>
                 </div>
@@ -157,14 +160,11 @@
 <link rel="stylesheet" href="~/css/comment.css">
 
 
-
-
-
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <section class="content-item" id="comments">
-    <div class="container">   
-    	<div class="row">
-            <div class="col-sm-8">   
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8">
                 <form id="commentForm">
                     <h3 class="pull-left">New Comment</h3>
                     <button type="submit" class="btn btn-normal pull-right">Submit</button>
@@ -190,8 +190,8 @@
                                 <textarea name="text" class="form-control" id="message" placeholder="Your message" required="" maxlength="99"></textarea>
                             </div>
                             <div id="textarea_feedback"></div>
-                            
-                        </div>  	
+
+                        </div>
                     </fieldset>
                 </form>
                 <script>
@@ -204,14 +204,15 @@
                         location.reload();
                     };
                 </script>
-                
-                
-                
+
+
                 <h3>@Model.Comments.Count Comments</h3>
                 @foreach (var comment in Model.Comments)
                 {
                     <div class="media">
-                        <a class="pull-left" href="https://localhost:5001/Home/Profile?userId=@comment.Writer.Id"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""></a>
+                        <a class="pull-left" href="https://localhost:5001/Home/Profile?userId=@comment.Writer.Id">
+                            <img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                        </a>
                         <div class="media-body">
                             <h4 class="media-heading">@comment.Writer.FullName</h4>
                             <p>@comment.Text</p>

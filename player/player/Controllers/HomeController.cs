@@ -29,8 +29,9 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult Profile(int userId)
     {
+        var currentUser = HttpContext.Items["User"] as User;
         var user = userId is default(int)
-            ? HttpContext.Items["User"] as User
+            ? currentUser
             : _dataContext.Users.FirstOrDefault(u => u.Id == userId);
         if (user is null) return BadRequest();
         var comments = _dataContext.Comments
@@ -43,6 +44,7 @@ public class HomeController : Controller
 
         return View(new ProfileModel
         {
+            IsCurrentUser = currentUser!.Id == user.Id,
             User = user,
             Comments = comments
         });
@@ -56,6 +58,7 @@ public class HomeController : Controller
 
     public readonly struct ProfileModel
     {
+        public bool IsCurrentUser { get; init; }
         public User User { get; init; } = null!;
         public List<BetterComment> Comments { get; init; } = null!;
     }
