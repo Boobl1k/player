@@ -8,4 +8,5 @@ public class PlayerContext : BaseDbContext
     
     public DbSet<User> Users { get; set; }
     public DbSet<Track> Tracks { get; set; }
+    public DbSet<LikedTrack> LikedTracks { get; set; }
 }

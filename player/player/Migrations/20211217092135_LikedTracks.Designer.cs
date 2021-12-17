@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using player.DB;
 
@@ -10,9 +11,10 @@ using player.DB;
 namespace player.Migrations
 {
     [DbContext(typeof(PlayerContext))]
-    partial class UserContextModelSnapshot : ModelSnapshot
+    [Migration("20211217092135_LikedTracks")]
+    partial class LikedTracks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
