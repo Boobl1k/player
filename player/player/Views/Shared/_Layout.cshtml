@@ -25,14 +25,14 @@
                         <a class="nav-link" asp-controller="Home" asp-action="AddMusicPage">AddMusic</a>
                     </li>
                     
+                    @if (Context.Items["User"] is not null)
+                    {
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Tracks" asp-action="Liked">LikedTracks</a>
                     </li>
                     @* <li class="nav-item"> *@
                     @*   <a class="nav-link" href="#">Link</a> *@
                     @* </li> *@
-                    @if (Context.Items["User"] is not null)
-                    {
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Profile">Profile</a>
                         </li>
