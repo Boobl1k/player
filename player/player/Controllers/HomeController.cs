@@ -29,9 +29,16 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult Profile(int userId)
     {
+        //var comments = _dataContext.Comments.Where(c => c.UserId)
         return View(userId is default(int)
             ? HttpContext.Items["User"]
             : _dataContext.Users.FirstOrDefault(u => u.Id == userId));
+    }
+    
+    public class ProfileModel
+    {
+        public User? User { get; set; }
+        public IQueryable<Comment>? Comments { get; set; }
     }
 
     [Authorize, HttpGet]
